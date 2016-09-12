@@ -15,7 +15,7 @@ for nfile ={'1_ppi_anonym_v2.txt',...
     
     if construct_network
         for dim = dim_l
-            [US,QA] = learn_DCA_vector(network,0.5,[dim],gene_map_id);
+            [US,QA] = learn_DCA_vector(network,0.5,network_file,[dim],gene_map_id);
             construct_network(US,gene_map_id,[network_file,num2str(dim)],[0.7,0.8,0.9],output_path);
         end
     else

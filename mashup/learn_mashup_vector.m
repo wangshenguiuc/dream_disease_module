@@ -1,9 +1,9 @@
-function [USA,QA] = learn_mashup_vector(network,rspx,dim)
+function [USA,QA] = learn_mashup_vector(network,rspx,dim_l,net_name,net_i2g)
 
 nnet = length(network);
 nnode = size(network{1},1);
 for i=1:nnet
-    tA = run_diffusion (network{i}, 'personalized-pagerank', struct('maxiter', 20, 'reset_prob', rspx));
+    tA = run_diffusion(network{i}, 'personalized-pagerank', struct('maxiter', 20, 'reset_prob', rspx));
     if i==1
         QA = tA;
         continue
@@ -17,12 +17,15 @@ QA = log(QA+alpha)-log(alpha);
 
 QA=QA*QA';
 
-fprintf('run SVD d=%d\n',dim);tic
-QA = sparse(QA);
-[U,S] = svds(QA,dim);
-LA = U;
-USA = LA*sqrt(sqrt(S));toc
-
+for dim = dim_l
+    fprintf('run SVD d=%d\n',dim);tic
+    [U,S,~] = svds(QA,dim);
+    LA = U;
+    USA = LA*sqrt(S);       
+    node_id_sorted = values(net_i2g,num2cell(1:nnode))';    
+    T = table(node_id_sorted,USA);
+    writetable(T,['../data/Embedding_vector/MashUp/',char(net_name),num2str(dim),'.emb'],'Delimiter','\t','WriteVariableNames',false,'FileType','text');
+end
 
 end
 
