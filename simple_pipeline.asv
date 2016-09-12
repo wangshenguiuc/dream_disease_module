@@ -1,0 +1,18 @@
+[st,ed,wt] = textread('../Data/Network/our_network/ppi_entrez.txt','%s%s%f');
+gene_name = unique([st;ed]);
+gnum = length(gene_name);
+gene_map = containers.Map(gene_name,1:gnum);
+st_id = cell2mat(values(gene_map,st));
+ed_id = cell2mat(values(gene_map,ed));
+net = sparse(st_id,ed_id,wt,gnum,gnum);
+
+USA = learn_DCA_vector(net,0.5,50);
+nclst = 100;
+ind = kmeans(USA,nclst);
+
+fout = fopen('../result/module/sample_module.txt','w');
+for i=1:nclst
+    fprintf(fout,'%d\t%d',i,i);
+    for k = find(ind==i)
+    fprintf(fout,'\n');
+end
