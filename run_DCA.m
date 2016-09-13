@@ -19,7 +19,7 @@ for nfile ={'1_ppi_anonym_v2.txt',...
             construct_network(US,gene_map_id,[network_file,num2str(dim)],[0.7,0.8,0.9],output_path);
         end
     else
-        [US,QA] = learn_DCA_vector(network,0.5,dim_l,gene_map_id);
+        [US,QA] = learn_DCA_vector(network,0.5,network_file,dim_l,gene_map_id);
     end  
     agg_cluster( US,nclst_l,network_file);
 end
