@@ -24,7 +24,7 @@ for dim = dim_l
     USA = LA*sqrt(S);       
     node_id_sorted = values(net_i2g,num2cell(1:nnode))';    
     T = table(node_id_sorted,USA);
-    writetable(T,['../data/Embedding_vector/MashUp/',char(net_name),num2str(dim),'.emb'],'Delimiter','\t','WriteVariableNames',false,'FileType','text');
+    writetable(T,['../Data/Embedding_vector/MashUp/',char(net_name),num2str(dim),'.emb'],'Delimiter','\t','WriteVariableNames',false,'FileType','text');
 end
 
 end
