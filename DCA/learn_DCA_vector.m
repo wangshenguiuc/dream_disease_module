@@ -14,7 +14,7 @@ for dim = dim_l
     T = table(node_id_sorted,USA);
     writetable(T,['../Data/Embedding_vector/DCA/',char(net_name),num2str(dim),'.emb'],'Delimiter','\t','WriteVariableNames',false,'FileType','text');
 	agg_cluster( USA,nclst_l,[net_name,num2str(dim),'_'],net_i2g);
-	construct_network(USA,net_i2g,[net_name,num2str(dim)],[0.7,0.8,0.9],output_path);	
+	%construct_network(USA,net_i2g,[net_name,num2str(dim)],[0.7,0.8,0.9],output_path);	
 end
 
 end
