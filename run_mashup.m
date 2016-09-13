@@ -6,12 +6,12 @@ addpath '..\Data\Network\our_network\'
 construct_network = false;
 dim_l = [500,1000];
 nclst_l = [2000,1500,1000,800,500,200,100];
-for nfile ={'1_ppi_anonym_v2.txt',...
+net_file_l ={'1_ppi_anonym_v2.txt',...
         '2_ppi_anonym_v2.txt',...
         '3_signal_anonym_directed_v3.txt',...
         '4_coexpr_anonym_v2.txt',...
         '5_cancer_anonym_v2.txt','6_homology_anonym_v2.txt'}
-    network_file = char(nfile);
+    network_file = 'dream_ch2';
     output_path = '../Data/Network/embed_network/subch2/';
     [network,gene_map_id,gene_map_name] = read_multiple_network( net_file_l, false);
     
@@ -24,4 +24,4 @@ for nfile ={'1_ppi_anonym_v2.txt',...
         [US,QA] = learn_mashup_vector(network,0.5,dim_l,gene_map_id);
     end    
     agg_cluster( US,nclst_l,network_file);
-end
+
