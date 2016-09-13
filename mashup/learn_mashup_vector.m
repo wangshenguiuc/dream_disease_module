@@ -3,7 +3,7 @@ function [USA,QA] = learn_mashup_vector(network,rspx,net_name,dim_l,net_i2g)
 nnet = length(network);
 nnode = size(network{1},1);
 for i=1:nnet
-    tA = run_diffusion(network{i}, 'personalized-pagerank', struct('maxiter', 20, 'reset_prob', rspx));
+    tA = run_diffusion(network{i}, 'personalized-pagerank', struct('maxiter', 1, 'reset_prob', rspx));
     if i==1
         QA = tA;
         continue
@@ -16,7 +16,7 @@ alpha = 1/(nnode);
 QA = log(QA+alpha)-log(alpha);
 
 QA=QA*QA';
-
+dim_l
 for dim = dim_l
     fprintf('run SVD d=%d\n',dim);tic
     [U,S,~] = svds(QA,dim);

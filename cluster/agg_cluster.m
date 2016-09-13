@@ -1,4 +1,4 @@
-function agg_cluster( US,nclst_l,output_file)
+function agg_cluster( US,nclst_l,output_file,net_i2g)
 %AGG_CLUSTER Summary of this function goes here
 %   Detailed explanation goes here
 Z = linkage(US,'average','cosine');
