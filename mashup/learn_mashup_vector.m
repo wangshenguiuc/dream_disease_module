@@ -1,4 +1,4 @@
-function [USA,QA] = learn_mashup_vector(network,rspx,dim_l,net_name,net_i2g)
+function [USA,QA] = learn_mashup_vector(network,rspx,net_name,dim_l,net_i2g)
 
 nnet = length(network);
 nnode = size(network{1},1);

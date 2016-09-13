@@ -1,4 +1,4 @@
-function [USA,QA] = learn_DCA_vector(network,rspx,dim_l,net_name,net_i2g)
+function [USA,QA] = learn_DCA_vector(network,rspx,net_name,dim_l,net_i2g)
 
 nnode=size(network,1);
 QA = run_diffusion(network, 'personalized-pagerank', struct('maxiter', 10, 'reset_prob', rspx));
