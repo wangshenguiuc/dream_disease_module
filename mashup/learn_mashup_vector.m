@@ -1,5 +1,5 @@
 function [USA,QA] = learn_mashup_vector(network,rspx,net_name,dim_l,net_i2g,output_path)
-
+nclst_l = [2000,1500,1000,800,500,200,100];
 nnet = length(network);
 nnode = size(network{1},1);
 for i=1:nnet
