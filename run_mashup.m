@@ -5,8 +5,7 @@ addpath 'DCA'
 addpath 'build_network'
 addpath '..\Data\Network\our_network\'
 
-construct_network = false;
-dim_l = [100,500,1000];
+dim_l = [10,500,1000];
 nclst_l = [2000,1500,1000,800,500,200,100];
 net_file_l ={'1_ppi_anonym_v2.txt',...
         '2_ppi_anonym_v2.txt',...
@@ -17,14 +16,5 @@ net_file_l ={'1_ppi_anonym_v2.txt',...
     output_path = '../Data/Network/embed_network/subch2/';
     [network, gene_map_id,gene_map_name] = read_multiple_network( net_file_l, false);
     
-    if construct_network
-        for dim = dim_l
-            [US,QA] = learn_mashup_vector(network,0.5,network_file,[dim],gene_map_id);
-            construct_network(US,gene_map_id,[network_file,num2str(dim)],[0.7,0.8,0.9],output_path);
-			agg_cluster( US,nclst_l,network_file,gene_map_id);
-        end
-    else
-        [US,QA] = learn_mashup_vector(network,0.5,dim_l,gene_map_id);
-    end    
-    
 
+[US,QA] = learn_mashup_vector(network,0.5,network_file,dim_l,gene_map_id,output_path);		
