@@ -5,7 +5,7 @@ addpath 'DCA'
 addpath 'build_network'
 addpath '..\Data\Network\our_network\'
 
-dim_l = [10,500,1000];
+dim_l = [500,1000];
 nclst_l = [2000,1500,1000,800,500,200,100];
 net_file_l ={'1_ppi_anonym_v2.txt',...
         '2_ppi_anonym_v2.txt',...

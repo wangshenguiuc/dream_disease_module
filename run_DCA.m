@@ -2,7 +2,7 @@ addpath 'DCA'
 addpath 'read_data'
 addpath 'cluster'
 addpath 'build_network'
-dim_l = [10,100,500,1000];
+dim_l = [100,500,1000];
 
 for nfile ={'1_ppi_anonym_v2.txt',...
         '2_ppi_anonym_v2.txt',...

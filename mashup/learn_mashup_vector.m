@@ -3,7 +3,7 @@ function [USA,QA] = learn_mashup_vector(network,rspx,net_name,dim_l,net_i2g,outp
 nnet = length(network);
 nnode = size(network{1},1);
 for i=1:nnet
-    tA = run_diffusion(network{i}, 'personalized-pagerank', struct('maxiter', 0, 'reset_prob', rspx));
+    tA = run_diffusion(network{i}, 'personalized-pagerank', struct('maxiter', 5, 'reset_prob', rspx));
     if i==1
         QA = tA;
         continue
