@@ -1,7 +1,7 @@
 function [USA,QA] = learn_DCA_vector(network,rspx,net_name,dim_l,net_i2g,output_path)
 nclst_l = [2000,1500,1000,800,500,200,100];
 nnode=size(network,1);
-QA = run_diffusion(network, 'personalized-pagerank', struct('maxiter', 5, 'reset_prob', rspx));
+QA = fast_diffusion(network, rspx);
 alpha = 1/(nnode*nnode);
 QA = log(QA+alpha)-log(alpha);
 

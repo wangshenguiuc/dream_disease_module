@@ -1,4 +1,4 @@
-function [x,Q] = learn_mashup_vector(network,rspx,net_name,dim_l,net_i2g,output_path)
+function [USA,QA] = learn_mashup_vector(network,rspx,net_name,dim_l,net_i2g,output_path)
 nclst_l = [2000,1500,1000,800,500,200,100];
 nnet = length(network);
 nnode = size(network{1},1);
@@ -10,10 +10,15 @@ for i=1:nnet
     save(['..\Data\MashUp\diff',num2str(i),',.mat'],'R','-v7.3');
 end
 
+alpha = 1/(nnode);
+QA = log(QA+alpha)-log(alpha);
+
+QA=QA*QA';
+
 for dim = dim_l
     fprintf('run SVD d=%d\n',dim);tic
     [V, d] = eigs(RR_sum, ndim);      
-    x = V*sqrt(sqrt(d));
+    x = V*diag(sqrt(sqrt(d)));
     node_id_sorted = values(net_i2g,num2cell(1:nnode))';    
     T = table(node_id_sorted,USA);
     writetable(T,['../Data/Embedding_vector/MashUp/',char(net_name),num2str(dim),'.emb'],'Delimiter','\t','WriteVariableNames',false,'FileType','text');

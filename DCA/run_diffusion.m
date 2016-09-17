@@ -8,7 +8,7 @@
 % Q: diffusion state matrix. i-th column represents the diffusion
 %    state of the i-th node. 
 %
-function [Q] = run_diffusion(A, method, aux)
+function [Q,P] = run_diffusion(A, method, aux)
     n = size(A, 1);
 
     renorm = @(M) bsxfun(@rdivide, M, sum(M));
