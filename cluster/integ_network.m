@@ -5,7 +5,7 @@ nnet = length(network);
 nnode = size(network{1},1);
 network_sim = zeros(nnet,nnet);
 for i=1:nnet
-    max_weight = max(network{i});
+    max_weight = max(network{i}(:));
     network{i} = network{i}/max_weight;
 end
 mweight = 0.0;
@@ -31,7 +31,7 @@ network_wt = network_wt/sum(network_wt);
 network_integ = zeros(nnode,nnode);
 
 for i=1:nnet
-    network_integ = network_integ + network_wt*network{i};
+    network_integ = network_integ + network_wt{i}*network{i};
 end
 
 end
