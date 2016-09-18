@@ -6,7 +6,6 @@ addpath('../Data/Network/Eddie_network/');
 if typed
     [g1,g2,wt,~] = textread(file_name,'%s%s%f%s');
 else
-    file_name
     [g1,g2,wt] = textread(file_name,'%s%s%f');
 end
 

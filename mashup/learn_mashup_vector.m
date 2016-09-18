@@ -4,8 +4,8 @@ nnet = length(network);
 nnode = size(network{1},1);
 RR_sum = zeros(nnode);
 for i=1:nnet
-    Q = fast_diffusion(network{i}, rspx);
-    R = log(Q + 1/ngene);
+    Q = run_diffusion(network{i}, rspx, 20); 
+    R = log(Q + 1/nnode);
     RR_sum = RR_sum + R * R';
     save(['..\Data\MashUp\diff',num2str(i),',.mat'],'R','-v7.3');
 end
