@@ -12,7 +12,7 @@ end
 
 for dim = dim_l
     fprintf('run SVD d=%d\n',dim);tic
-    [V, d] = eigs(RR_sum, ndim);      
+    [V, d] = eigs(RR_sum, dim);      
     x = V*sqrt(sqrt(d));
     node_id_sorted = values(net_i2g,num2cell(1:nnode))';    
     T = table(node_id_sorted,USA);
