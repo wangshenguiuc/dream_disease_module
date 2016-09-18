@@ -1,8 +1,13 @@
 library(pvclust)
+library(parallel)
+#library(snow)
+#library(Rmpi)
 ### example using Boston data in package MASS
-data(Boston, package = "MASS")
+input_file = "E:\\swang141\\project\\DreamDiseaseModule\\Sheng\\Data\\Embedding_vector\\DCA\\DCA_50dim.txt"
+mydata =read.table(file = input_file)
 ## multiscale bootstrap resampling (non-parallel)
-boston.pv <- pvclust(Boston, nboot=100, parallel=FALSE)
+
+boston.pv <- pvclust(mydata, nboot=100)
 
 
 pv_thres_l = c(0.9,0.95)

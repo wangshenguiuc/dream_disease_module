@@ -15,10 +15,10 @@ for dim = dim_l
     [V, d] = eigs(RR_sum, dim);      
     x = V*sqrt(sqrt(d));
     node_id_sorted = values(net_i2g,num2cell(1:nnode))';    
-    T = table(node_id_sorted,USA);
+    T = table(node_id_sorted,x);
     writetable(T,['../Data/Embedding_vector/MashUp/',char(net_name),num2str(dim),'.emb'],'Delimiter','\t','WriteVariableNames',false,'FileType','text');
-	agg_cluster( USA,nclst_l,[net_name,num2str(dim),'_'],net_i2g);
-	%construct_network(USA,net_i2g,[net_name,num2str(dim)],[0.7,0.8,0.9],output_path);	
+	agg_cluster( x,nclst_l,[net_name,num2str(dim),'_'],net_i2g);
+	construct_network(USA,net_i2g,[net_name,num2str(dim)],[0.7,0.8,0.9],output_path);	
 end
 
 end
