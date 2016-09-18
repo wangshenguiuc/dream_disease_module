@@ -31,7 +31,7 @@ network_wt = network_wt/sum(network_wt);
 network_integ = zeros(nnode,nnode);
 
 for i=1:nnet
-    network_integ = network_integ + network_wt{i}*network{i};
+    network_integ = network_integ + network_wt(i)*network{i};
 end
 
 end
