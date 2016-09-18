@@ -15,11 +15,11 @@ function [Q,P] = run_diffusion(A, reset_prob, maxiter)
 
     A = A + diag(sum(A) == 0); % Add self-edges to isolated nodes
     P = renorm(A);
-    fprintf('rsp=%f\n',aux.reset_prob);      
+    fprintf('rsp=%f\n',reset_prob);      
       reset = eye(n);
       Q = reset;
-      for i = 1:aux.maxiter
-        Q_new = aux.reset_prob * reset + (1 - aux.reset_prob) * P * Q;
+      for i = 1:maxiter
+        Q_new = reset_prob * reset + (1 - reset_prob) * P * Q;
         delta = norm(Q - Q_new, 'fro');
          fprintf('Iter %d. Frobenius norm: %f\n', i, delta);
         Q = Q_new;
