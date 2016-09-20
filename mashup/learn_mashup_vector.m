@@ -9,23 +9,22 @@ nnode = size(network{1},1);
 %     RR_sum = RR_sum + R * R';
 %     save(['..\Data\MashUp\diff',num2str(i),',.mat'],'R','-v7.3');
 % end
-
 for i=1:nnet
-    save(['..\Data\MashUp\diff',num2str(i),',.mat'],'tA','-v7.3');
-%     tA = run_diffusion(network{i}, 'personalized-pagerank', struct('maxiter', 20, 'reset_prob', rspx));
+%     
+    tA = run_diffusion(network{i}, 'personalized-pagerank', struct('maxiter', 20, 'reset_prob', rspx));
     if i==1
         QA = tA;
         continue
     end
     QA = [QA,tA];
-    
+    save(['../Data/Embedding_vector/MashUp/diff',num2str(i),',.mat'],'tA');
 end
 
 alpha = 1/(nnode);
 QA = log(QA+alpha)-log(alpha);
 
 QA=QA*QA';
-
+save(['../Data/Embedding_vector/MashUp/QA.mat'],'QA');
 
 for dim = dim_l
     %     fprintf('run SVD d=%d\n',dim);tic
