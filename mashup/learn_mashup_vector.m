@@ -11,7 +11,7 @@ nnode = size(network{1},1);
 % end
 for i=1:nnet
 %     
-    tA = run_diffusion(network{i}, 'personalized-pagerank', struct('maxiter', 20, 'reset_prob', rspx));
+    tA = run_diffusion(network{i}, 'personalized-pagerank', struct('maxiter', 1, 'reset_prob', rspx));
     if i==1
         QA = tA;
         continue
