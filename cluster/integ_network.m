@@ -1,4 +1,4 @@
-function network_integ = integ_network( network )
+function network_integ = integ_network( network, weighted )
 %INTEG_NETWORK Summary of this function goes here
 %   Detailed explanation goes here
 nnet = length(network);
@@ -29,7 +29,8 @@ end
 network_wt = sum(network_sim);
 network_wt = network_wt/sum(network_wt);
 network_integ = zeros(nnode,nnode);
-
+if ~weighted
+    network_wt = ones(size(network_wt));
 for i=1:nnet
     network_integ = network_integ + network_wt(i)*network{i};
 end

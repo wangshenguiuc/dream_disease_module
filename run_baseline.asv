@@ -17,7 +17,5 @@ output_path = '../Data/Network/embed_network/subch2/';
 [network, gene_map_id,gene_map_name] = read_multiple_network( net_file_l, false);
 weighted = false;
 network_integ = integ_network(network,weighted);
-if ~weighted
-network_file = ['dream_ch2_integ_no_wet'];
-end
+
 [US,QA] = learn_DCA_vector(network_integ,0.5,network_file,dim_l,gene_map_id,output_path);
