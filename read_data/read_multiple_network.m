@@ -1,8 +1,6 @@
 function [network,gene_map_id,gene_map_name] = read_multiple_network( network_file_l, typed)
 %READ_NETWORK Summary of this function goes here
 %   Detailed explanation goes here
-addpath('../Data/Network/our_network/');
-addpath('../Data/Network/Eddie_network/');
 geneset =[];
 for file=network_file_l
     [network,gene_map_id,gene_map_name] = read_network(char(file), typed);
@@ -15,7 +13,7 @@ ngene = length(geneset);
 
 gene_map_name = containers.Map(geneset,1:ngene);
 gene_map_id = containers.Map(1:ngene,geneset);
-network = cell(1,6);
+network = cell(1,length(network_file_l));
 i=1;
 for file=network_file_l
     if typed

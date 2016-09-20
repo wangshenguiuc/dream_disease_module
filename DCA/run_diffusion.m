@@ -18,6 +18,10 @@ function [Q,P] = run_diffusion(A, reset_prob, maxiter)
     fprintf('rsp=%f\n',reset_prob);      
       reset = eye(n);
       Q = reset;
+      if maxiter==0
+          Q=P;
+          return
+      end
       for i = 1:maxiter
         Q_new = reset_prob * reset + (1 - reset_prob) * P * Q;
         delta = norm(Q - Q_new, 'fro');
