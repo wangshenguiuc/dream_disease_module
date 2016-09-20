@@ -5,7 +5,7 @@ addpath 'DCA'
 addpath 'build_network'
 addpath '../Data/Network/subch2/subchallenge2'
 
-dim_l = [2000,1000,500,50];
+dim_l = [50,500,1000,2000];
 
 net_file_l ={'1_ppi_anonym_aligned_v2.txt',...
     '2_ppi_anonym_aligned_v2.txt',...
