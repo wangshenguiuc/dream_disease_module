@@ -8,22 +8,22 @@
 % Q: diffusion state matrix. i-th column represents the diffusion
 %    state of the i-th node. 
 %
-function [Q,P] = run_diffusion(A, reset_prob, maxiter)
+function [Q] = run_diffusion(A, method, aux)
     n = size(A, 1);
 
     renorm = @(M) bsxfun(@rdivide, M, sum(M));
 
     A = A + diag(sum(A) == 0); % Add self-edges to isolated nodes
     P = renorm(A);
-    fprintf('rsp=%f\n',reset_prob);      
+    fprintf('rsp=%f\n',aux.reset_prob);
+    if strcmp(method, 'personalized-pagerank')
+      assert(isfield(aux, 'maxiter'))
+      assert(isfield(aux, 'reset_prob'))
+      
       reset = eye(n);
       Q = reset;
-      if maxiter==0
-          Q=P;
-          return
-      end
-      for i = 1:maxiter
-        Q_new = reset_prob * reset + (1 - reset_prob) * P * Q;
+      for i = 1:aux.maxiter
+        Q_new = aux.reset_prob * reset + (1 - aux.reset_prob) * P * Q;
         delta = norm(Q - Q_new, 'fro');
          fprintf('Iter %d. Frobenius norm: %f\n', i, delta);
         Q = Q_new;
@@ -33,7 +33,19 @@ function [Q,P] = run_diffusion(A, reset_prob, maxiter)
         end
       end
 
-    
+    elseif strcmp(method, 'self-diffusion')
+      assert(isfield(aux, 'maxiter'))
+
+      Q = eye(n);
+      for i = 1:aux.maxiter
+        Q_new = eye(n) + P * Q;
+         fprintf('Iter %d. Frobenius norm: %f\n', i, norm(renorm(Q) - renorm(Q_new), 'fro'));
+        Q = Q_new;
+      end
+
+    else
+      error(['Unknown method: ', method])
+    end
     Q = bsxfun(@rdivide, Q, sum(Q));
 
 end
