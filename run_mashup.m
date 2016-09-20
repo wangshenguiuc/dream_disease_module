@@ -3,7 +3,7 @@ addpath 'read_data'
 addpath 'cluster'
 addpath 'DCA'
 addpath 'build_network'
-addpath '..\Data\Network\subch2\subchallenge2'
+addpath '../Data/Network/subch2/subchallenge2'
 
 dim_l = [2000,1000,500,50];
 
