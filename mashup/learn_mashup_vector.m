@@ -11,13 +11,13 @@ nnode = size(network{1},1);
 % end
 for i=1:nnet
 %     
-    tA = run_diffusion(network{i}, 'personalized-pagerank', struct('maxiter', 1, 'reset_prob', rspx));
+    tA = run_diffusion(network{i}, 'personalized-pagerank', struct('maxiter', 7, 'reset_prob', rspx));
+    save(['../Data/Embedding_vector/MashUp/diff',num2str(i),',.mat'],'tA','-v7.3');
     if i==1
         QA = tA;
         continue
     end
     QA = [QA,tA];
-    save(['../Data/Embedding_vector/MashUp/diff',num2str(i),',.mat'],'tA');
 end
 
 alpha = 1/(nnode);
