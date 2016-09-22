@@ -13,8 +13,10 @@ R_sum = zeros(nnode);
 alpha = 1/(nnode);
 for i=1:nnet
 %     tA = run_diffusion(network{i}, 'personalized-pagerank', struct('maxiter', 7, 'reset_prob', rspx));
-    load(['../Data/Embedding_vector/MashUp/diff',num2str(i),'.mat'],'tA');
+    load(['../Data/Embedding_vector/MashUp/diff',num2str(i),',.mat'],'tA');
 QA = log(tA+alpha)-log(alpha);
+size(QA)
+size(R_sum)
 R_sum = R_sum + QA*QA';
 end
 
