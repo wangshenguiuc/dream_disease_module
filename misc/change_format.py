@@ -4,7 +4,7 @@ def process(network):
 	mod = set()
 	for line in fin:
 		w = line.strip().split()
-		if len(w)>100 or len(w)<3:
+		if len(w)>100 or len(w)<10:
 			continue
 		mod.add('\t'.join(w))
 	fin.close()

@@ -17,6 +17,7 @@ for thres = thres_l
     file_name = [output_path,file_head,num2str(thres)];
     fid=fopen(file_name,'wt');
     nedge = length(i);
+    fprintf('nedge=%d\n',nedge);
     for k=1:nedge
         fprintf(fid,'%s\t%s\t%f\n',char(values(gene_map_id,num2cell(i(k)))),char(values(gene_map_id,num2cell(j(k)))),v(k));
     end

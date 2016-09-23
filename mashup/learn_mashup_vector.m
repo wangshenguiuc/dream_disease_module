@@ -39,7 +39,7 @@ for dim = dim_l
     
     agg_cluster( x,nclst_l,[net_name,num2str(dim),'US_'],net_i2g);
     agg_cluster( y ,nclst_l,[net_name,num2str(dim),'U_'],net_i2g);
-    % 	construct_network(x,net_i2g,[net_name,num2str(dim)],[0.9],output_path);
+   construct_network(x,net_i2g,[net_name,num2str(dim)],[0.9],output_path);
 end
 
 end
